@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Moisture Monitor</title>
+</head>
+<body>
+  <h1>🌱 Moisture Data</h1>
+  <p>Latest Moisture: <span id="moisture">--</span>%</p>
+
+  <script>
+    async function fetchData() {
+      const res = await fetch("/latest");
+      const data = await res.json();
+      document.getElementById("moisture").textContent = data.moisture ?? "--";
+    }
+    setInterval(fetchData, 2000);
+  </script>
+</body>
+</html>
